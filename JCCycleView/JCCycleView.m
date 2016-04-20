@@ -171,31 +171,34 @@
 
 #pragma mark - 增加childView
 
-- (void)addChildView:(UIView *)view
+- (BOOL)addChildView:(UIView *)view
 {
-    [self addView:view atIndex:self.childViews.count show:NO];
+    return [self addView:view atIndex:self.childViews.count show:NO];
 }
 
-- (void)addChildView:(UIView *)view atIndex:(NSInteger)index
+- (BOOL)addChildView:(UIView *)view atIndex:(NSInteger)index
 {
-    [self addView:view atIndex:index show:NO];
+    return [self addView:view atIndex:index show:NO];
 }
 
-- (void)addAndShowView:(UIView *)view
+- (BOOL)addAndShowView:(UIView *)view
 {
-    [self addView:view atIndex:self.childViews.count show:YES];
+    return [self addView:view atIndex:self.childViews.count show:YES];
 }
 
-- (void)addAndShowView:(UIView *)view atIndex:(NSInteger)index
+- (BOOL)addAndShowView:(UIView *)view atIndex:(NSInteger)index
 {
-    [self addView:view atIndex:index show:YES];
+    return [self addView:view atIndex:index show:YES];
 }
 
-- (void)addView:(UIView *)view
+- (BOOL)addView:(UIView *)view
         atIndex:(NSInteger)index
            show:(BOOL)show
 {
-    if (![self isNewView:view]) return;
+    if (![self isNewView:view]) return NO;
+    if (index < 0 || index > self.totalCount) {
+        return NO;
+    }
     
     [self.childViews insertObject:view atIndex:index];
     
@@ -204,7 +207,7 @@
     
     if (self.totalCount == 1) {
         [self resetWithOneView];
-        return;
+        return YES;
     } else if (self.totalCount == 2 && show) {
         _currentIndex = 1 - index;
         [self resetWithTwoViews];
@@ -235,6 +238,8 @@
         }
         
     }
+    
+    return YES;
 }
 
 /**

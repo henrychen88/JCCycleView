@@ -64,22 +64,22 @@ typedef void (^ViewChangedBlock)(NSInteger currentIndex, NSInteger previousIndex
 /**
  *  增加一个childView位于最后的位置
  */
-- (void)addChildView:(UIView *)view;
+- (BOOL)addChildView:(UIView *)view;
 
 /**
  *  增加一个childView位于index
  */
-- (void)addChildView:(UIView *)view atIndex:(NSInteger)index;
+- (BOOL)addChildView:(UIView *)view atIndex:(NSInteger)index;
 
 /**
  *  增加一个childView位于最后的位置,并显示这个View
  */
-- (void)addAndShowView:(UIView *)view;
+- (BOOL)addAndShowView:(UIView *)view;
 
 /**
  *  增加一个childView位于index,并显示这个View
  */
-- (void)addAndShowView:(UIView *)view atIndex:(NSInteger)index;
+- (BOOL)addAndShowView:(UIView *)view atIndex:(NSInteger)index;
 
 /**
  *  删除childView
